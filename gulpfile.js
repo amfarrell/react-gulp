@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var debug = require('gulp-debug');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var react = require('gulp-react');
@@ -13,3 +14,22 @@ var path = {
     DEST_BUILD: 'dist/build',
     DEST: 'dist'
 };
+
+gulp.task('transform', function() {
+    gulp.src(path.JS)
+    .pipe(debug({title: 'unicorn'}))
+    .pipe(react())
+    .pipe(gulp.dest(path.DEST_SRC));
+});
+
+gulp.task('copy', function() {
+    gulp.src(path.HTML)
+    .pipe(debug({title: 'lion'}))
+    .pipe(gulp.dest(path.DEST));
+});
+
+gulp.task('watch', function(){
+  gulp.watch(path.ALL, ['transform', 'copy']);
+});
+
+gulp.task('default', ['watch']);
