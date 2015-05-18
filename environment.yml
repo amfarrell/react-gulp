@@ -1,0 +1,12 @@
+name: react-gulp
+channels:
+- auto
+- javascript
+- amfarrell
+dependencies:
+- python=2.7
+- iojs
+- gulp
+- pip:
+    - flask
+
